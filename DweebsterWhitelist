@@ -1,19 +1,43 @@
--- Whitelist for Dweebster
-return {
-    "61732873-2C9D-491E-9D57-B3D98257761D", -- drdweebq
-    "F10D0C19-0E90-43C7-94BC-272A1EC242E",  -- Changed
-
+-- Whitelist
+local Whitelist = {
+    "61732873-2C9D-491E-9D57-B3D98257761D", -- Dweeb
+    "F10D0C19-0E90-43C7-94BC-272A1EC242E", -- Changed
 }
 
-local Blacklist {
-    "BD575417-0AA5-44B0-9587-802C9a805136", -- Mont
-    "2B7E4926-420F-446C-96BD-7BC5C6AC57F2", -- vyx (glocked decision)
-     "20320114-562e-45fe-8c2a-8671f7ad3495", -- l0l
-    "1753EAAC-E139-4510-8DD1-5B8ADBEFCD2E", -- rainy
+-- Blacklist
+local Blacklist = {
+	"none", --
 }
 
-if Blacklist [game:GetService("RbxAnalyticsService"):GetClientId()] then
-    game.Players.LocalPlayer:Kick("blacklisted nn? cry about it")
+-- Function to check if a HWID is allowed
+local function IsHWIDAllowed(hwid)
+    for _, allowedHWID in ipairs(Whitelist) do
+        if allowedHWID == hwid then
+            return true
+        end
+    end
+    return false
 end
 
-.gg/benefitz
+-- Function to check if a HWID is blocked
+local function IsHWIDBlocked(hwid)
+    for _, blockedHWID in ipairs(Blacklist) do
+        if blockedHWID == hwid then
+            return true
+        end
+    end
+    return false
+end
+
+-- Example usage:
+local player = game.Players.LocalPlayer
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+
+if IsHWIDBlocked(hwid) then
+    player:Kick("imagine Blacklisted :skull: Go Get Good NN")
+elseif not IsHWIDAllowed(hwid) then
+    player:Kick("Imagine Not Whitelisted lololol")
+else
+    print("You're allowed to play cuz your cool")
+    -- Continue with game logic
+end
