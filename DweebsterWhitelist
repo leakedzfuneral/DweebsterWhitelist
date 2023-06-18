@@ -6,7 +6,7 @@ local Whitelist = {
 
 -- Blacklist
 local Blacklist = {
-	"none", --
+	"61732873-2C9D-491E-9D57-B3D98257761D", --
 }
 
 -- Function to check if a HWID is allowed
